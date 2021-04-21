@@ -1,6 +1,6 @@
 import { Meta, Story } from "@storybook/react";
 import React, { ComponentProps } from "react";
-import Example1 from "./Example1";
+import Example1 from "./Opacity";
 
 export default {
     title: "Example1",
