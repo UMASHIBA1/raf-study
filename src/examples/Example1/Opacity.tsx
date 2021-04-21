@@ -1,5 +1,6 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { RefObject, useEffect, useRef, useState } from "react";
 import styled from "styled-components";
+import useRaf from "../../hooks/useRaf";
 
 const Wrapper = styled.div`
     width: 360px;
@@ -8,32 +9,16 @@ const Wrapper = styled.div`
     opacity: 1;
 `;
 
+const fadeout = (ref: RefObject<HTMLDivElement>) => {
+    if (ref.current !== null) {
+        const nowOpacity = parseFloat(ref.current.style.opacity !== ""?ref.current.style.opacity: "1");
+        const nextOpacity = nowOpacity - 0.01;
+        ref.current.style.opacity = `${nextOpacity}`;
+    }
+}
 
 const Example1: React.FC = () => {
-    const ref = useRef<HTMLDivElement>(null);
-    let startTime: number | null = null;
-
-    const fadeout = (timestamp: number) => {
-        if (startTime === null) {
-            startTime = timestamp;
-        }
-        if (ref.current != null && startTime !== null) {
-            const progress = timestamp - startTime;
-            const nowOpacity = parseFloat(ref.current.style.opacity !== ""?ref.current.style.opacity: "1");
-            const nextOpacity = nowOpacity - 0.005;
-            ref.current.style.opacity = `${nextOpacity}`;
-            if(progress < 5000 ){
-                requestAnimationFrame(fadeout);
-            }
-        }
-    }
-
-    useEffect(() => {
-
-        console.log("run effect", ref);
-        requestAnimationFrame(fadeout);
-    }, [ref]);
-    
+    const [ref] = useRaf<HTMLDivElement>(fadeout, 5000);
 
     return(
         <Wrapper ref={ref}/>
