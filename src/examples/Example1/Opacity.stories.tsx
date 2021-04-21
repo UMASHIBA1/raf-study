@@ -1,12 +1,12 @@
 import { Meta, Story } from "@storybook/react";
 import React, { ComponentProps } from "react";
-import Example1 from "./Opacity";
+import Opacity from "./Opacity";
 
 export default {
-    title: "Example1",
-    compoennt: Example1
+    title: "Opacity",
+    compoennt: Opacity
 } as Meta;
 
-const Template: Story<ComponentProps<typeof Example1>> = (args) => <Example1 {...args} />;
+const Template: Story<ComponentProps<typeof Opacity>> = (args) => <Opacity {...args} />;
 
-export const Example1_1 = Template.bind({});
+export const Opacity1 = Template.bind({});

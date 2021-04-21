@@ -17,7 +17,7 @@ const fadeout = (ref: RefObject<HTMLDivElement>) => {
     }
 }
 
-const Example1: React.FC = () => {
+const Opacity: React.FC = () => {
     const [ref] = useRaf<HTMLDivElement>(fadeout, 5000);
 
     return(
@@ -25,4 +25,4 @@ const Example1: React.FC = () => {
     );
 }
 
-export default Example1;
+export default Opacity;
